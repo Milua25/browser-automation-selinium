@@ -71,7 +71,6 @@ class WebAutomation():
         self.driver.execute_script("arguments[0].click();", download_button)
 
     def close(self):
-        input("Press ENTER to exit")
         self.driver.quit()
 
 

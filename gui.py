@@ -1,4 +1,8 @@
 import tkinter as tk
+from tkinter import messagebox
+
+from main import WebAutomation
+import os
 
 class App:
     def __init__(self, root):
@@ -14,7 +18,7 @@ class App:
 
         self.entry_username = tk.Entry(self.login_frame)
         self.entry_username.grid(row=0, column=1, sticky=tk.EW)
-        self.entry_password = tk.Entry(self.login_frame)
+        self.entry_password = tk.Entry(self.login_frame, show="*")
         self.entry_password.grid(row=1, column=1, sticky=tk.EW)
 
 
@@ -49,10 +53,18 @@ class App:
         password = self.entry_password.get()
         current_address = self.entry_current_address.get()
         permanent_address = self.entry_permanent_address.get()
+        fullname = self.entry_fullname.get()
+        email = self.entry_email.get()
 
+        self.web_automation = WebAutomation()
+        self.web_automation.login(username, password)
+        self.web_automation.fill_form(fullname, email, current_address, permanent_address)
+        self.web_automation.download_file()
+        self.web_automation.close()
 
     def close_browser(self):
-        pass
+        self.web_automation.close()
+        messagebox.showinfo("Web Automation", "Submitted successfully")
 
 root = tk.Tk()
 app = App(root)
