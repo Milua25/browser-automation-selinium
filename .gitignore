@@ -1,0 +1,5 @@
+chromedriver-mac-arm64
+.env
+.idea
+.DS_Store
+sampleFile.jpeg
